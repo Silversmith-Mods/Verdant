@@ -1,8 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#verdant:has_duckweed",
-  "features": [
-    "verdant:duckweed_patch"
-  ],
-  "step": "vegetal_decoration"
-}

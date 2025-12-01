@@ -8,6 +8,9 @@
     "Ordana",
     "Kayla_the_bee"
   ],
+  "contributors": [
+    "cassiancc"
+  ],
   "contact": {
     "homepage": "https://modrinth.com/project/verdant-mod",
     "sources": "https://github.com/AstralOrdana/verdant"
@@ -25,8 +28,8 @@
     "verdant-common.mixins.json"
   ],
   "depends": {
-    "fabric": "*",
-    "minecraft": "1.20.1",
+    "fabric-api": "*",
+    "minecraft": "1.21.1",
     "moonlight": ">=1.20-2.13.30"
   }
 }

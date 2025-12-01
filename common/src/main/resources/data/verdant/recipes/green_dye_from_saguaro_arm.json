@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "verdant:saguaro_arm"
-  },
-  "result": "minecraft:green_dye",
-  "experience": 0.5,
-  "cookingtime": 200
-}

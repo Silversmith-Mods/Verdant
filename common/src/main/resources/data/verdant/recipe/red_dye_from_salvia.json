@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "verdant:salvia"
+    }
+  ],
+  "result": {
+    "id": "minecraft:red_dye",
+    "count": 1
+  }
+}

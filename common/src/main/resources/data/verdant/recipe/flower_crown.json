@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "verdant:azalea_flowers"
+    }
+  },
+  "result": {
+    "id": "verdant:flower_crown",
+    "count": 1
+  }
+}

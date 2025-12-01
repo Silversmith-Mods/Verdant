@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wood_unstrip",
+  "ingredients": [
+    {
+      "item": "verdant:cherry_bark"
+    },
+    {
+      "item": "minecraft:stripped_cherry_wood"
+    }
+  ],
+  "result": {
+    "id": "minecraft:cherry_wood",
+    "count": 1
+  }
+}

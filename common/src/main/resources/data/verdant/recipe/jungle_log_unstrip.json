@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "log_unstrip",
+  "ingredients": [
+    {
+      "item": "verdant:jungle_bark"
+    },
+    {
+      "item": "minecraft:stripped_jungle_log"
+    }
+  ],
+  "result": {
+    "id": "minecraft:jungle_log",
+    "count": 1
+  }
+}

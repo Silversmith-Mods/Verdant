@@ -3,24 +3,23 @@ package com.ordana.verdant.mixins;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.ordana.verdant.reg.ModTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ShearsItem;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Slice;
+
+import java.util.List;
 
 @Mixin(ShearsItem.class)
 public class ShearsItemMixin {
 
-    @WrapOperation(method = "getDestroySpeed",
-            slice = @Slice(
-                    from = @At(value = "FIELD", target = "Lnet/minecraft/world/level/block/Blocks;VINE:Lnet/minecraft/world/level/block/Block;")
-            ),
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z", ordinal = 0)
+    @WrapOperation(method = "createToolProperties",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/component/Tool$Rule;overrideSpeed(Lnet/minecraft/tags/TagKey;F)Lnet/minecraft/world/item/component/Tool$Rule;", ordinal = 0)
 
     )
-    private boolean addShearables(BlockState instance, Block block, Operation<Boolean> original) {
-        return original.call(instance, block) || instance.is(ModTags.SHEARABLE);
+    private static Tool.Rule addShearables(TagKey<Block> tagKey, float f, Operation<Tool.Rule> original) {
+        return original.call(ModTags.SHEARABLE, f);
     }
 }

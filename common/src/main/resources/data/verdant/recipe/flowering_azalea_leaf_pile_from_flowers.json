@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "verdant:azalea_flowers"
+    },
+    {
+      "item": "verdant:azalea_leaf_pile"
+    }
+  ],
+  "result": {
+    "id": "verdant:flowering_azalea_leaf_pile",
+    "count": 1
+  }
+}

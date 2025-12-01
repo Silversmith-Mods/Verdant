@@ -1,5 +1,6 @@
 package com.ordana.verdant.blocks;
 
+import com.mojang.serialization.MapCodec;
 import com.ordana.verdant.Verdant;
 import com.ordana.verdant.reg.ModBlocks;
 import net.minecraft.core.BlockPos;
@@ -28,12 +29,17 @@ public class ModGrassBlock extends BushBlock implements BonemealableBlock {
         super(properties);
     }
 
+    @Override
+    protected MapCodec<? extends BushBlock> codec() {
+        return simpleCodec(ModGrassBlock::new);
+    }
+
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
         return true;
     }
 

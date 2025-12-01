@@ -5,6 +5,7 @@ import com.ordana.verdant.blocks.LeafPileBlock;
 import com.ordana.verdant.network.NetworkHandler;
 import com.ordana.verdant.network.SendCustomParticlesPacket;
 import com.ordana.verdant.util.WeatheringHelper;
+import net.mehvahdjukaar.moonlight.api.platform.network.NetworkHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -37,7 +38,7 @@ public abstract class LeavesMixin extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState blockState) {
         int i = 0;
         for (var direction : Direction.values()) {
                 var targetPos = pos.relative(direction);
@@ -87,7 +88,7 @@ public abstract class LeavesMixin extends Block implements BonemealableBlock {
         if (!downState.canOcclude() || !downState.isFaceSturdy(level, downPos, Direction.UP)) {
 
             //packet here
-            NetworkHandler.CHANNEL.sendToAllClientPlayersInRange(level, pos, 32,
+            NetworkHelper.sendToAllClientPlayersInRange(level, pos, 32,
                     new SendCustomParticlesPacket(SendCustomParticlesPacket.EventType.DECAY_LEAVES,
                             pos, Block.getId(state)));
         }

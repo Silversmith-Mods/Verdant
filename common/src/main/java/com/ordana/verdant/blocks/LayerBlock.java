@@ -1,5 +1,6 @@
 package com.ordana.verdant.blocks;
 
+import com.mojang.serialization.MapCodec;
 import com.ordana.verdant.entities.FallingLayerEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -47,6 +48,11 @@ public class LayerBlock extends FallingBlock {
         this.max = Collections.max(this.layerProperty().getPossibleValues());
     }
 
+    @Override
+    protected MapCodec<? extends FallingBlock> codec() {
+        return simpleCodec(LayerBlock::new);
+    }
+
     public final int getMaxLayers() {
         return max;
     }
@@ -88,7 +94,7 @@ public class LayerBlock extends FallingBlock {
     }
 
     @Override
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+    protected boolean isPathfindable(BlockState state, PathComputationType type) {
         return switch (type) {
             case LAND -> getLayers(state) < 5;
             case WATER -> getLayers(state) == 0;

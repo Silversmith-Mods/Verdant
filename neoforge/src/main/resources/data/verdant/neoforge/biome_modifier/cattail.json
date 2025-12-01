@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#verdant:has_cattail",
+  "features": [
+    "verdant:cattail_patch"
+  ],
+  "step": "vegetal_decoration"
+}

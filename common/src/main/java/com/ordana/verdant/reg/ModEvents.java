@@ -84,7 +84,7 @@ public class ModEvents {
                 level.playSound(player, pos, SoundEvents.GROWING_PLANT_CROP, SoundSource.BLOCKS, 1.0f, 1.0f);
                 level.setBlockAndUpdate(pos, newState);
 
-                stack.hurtAndBreak(1, player, (l) -> l.broadcastBreakEvent(hand));
+                stack.hurtAndBreak(1, player, Player.getSlotForHand(hand));
 
                 if (player instanceof ServerPlayer serverPlayer) {
                     CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger( serverPlayer, pos, stack);
@@ -151,7 +151,7 @@ public class ModEvents {
                 level.playSound(player, pos, SoundEvents.GROWING_PLANT_CROP, SoundSource.BLOCKS, 1.0f, 1.0f);
                 level.setBlockAndUpdate(pos, newState);
 
-                stack.hurtAndBreak(1, player, (l) -> l.broadcastBreakEvent(hand));
+                stack.hurtAndBreak(1, player, Player.getSlotForHand(hand));
 
                 if (player instanceof ServerPlayer serverPlayer) {
                     CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger( serverPlayer, pos, stack);
@@ -175,7 +175,7 @@ public class ModEvents {
                     ParticleUtils.spawnParticlesOnBlockFaces(level, pos, barkParticle, UniformInt.of(3, 5));
                 } else {
                     CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer) player, pos, stack);
-                    stack.hurtAndBreak(1, player, (l) -> l.broadcastBreakEvent(hand));
+                    stack.hurtAndBreak(1, player, Player.getSlotForHand(hand));
                     player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
                     if (!player.isCreative() || CommonConfigs.CREATIVE_DROP.get()) {
                         Block.popResourceFromFace(level, pos, hitResult.getDirection(), bark.getDefaultInstance());

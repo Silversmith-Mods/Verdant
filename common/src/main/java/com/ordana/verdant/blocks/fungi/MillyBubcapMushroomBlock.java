@@ -1,5 +1,6 @@
 package com.ordana.verdant.blocks.fungi;
 
+import com.mojang.serialization.MapCodec;
 import com.ordana.verdant.Verdant;
 import com.ordana.verdant.reg.ModBlocks;
 import net.minecraft.core.BlockPos;
@@ -40,7 +41,13 @@ public class MillyBubcapMushroomBlock extends BushBlock implements BonemealableB
         this.registerDefaultState(this.stateDefinition.any().setValue(CAPS, 1));
     }
 
+    @Override
+    protected MapCodec<? extends BushBlock> codec() {
+        return null;
+    }
+
     @Nullable
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState blockState = context.getLevel().getBlockState(context.getClickedPos());
         if (blockState.is(this)) {
@@ -50,15 +57,18 @@ public class MillyBubcapMushroomBlock extends BushBlock implements BonemealableB
         }
     }
 
+    @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
         return !state.getCollisionShape(level, pos).getFaceShape(Direction.UP).isEmpty() || state.isFaceSturdy(level, pos, Direction.UP);
     }
 
+    @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         BlockPos blockPos = pos.below();
         return this.mayPlaceOn(level.getBlockState(blockPos), level, blockPos);
     }
 
+    @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
         if (!state.canSurvive(level, currentPos)) {
             return Blocks.AIR.defaultBlockState();
@@ -67,10 +77,12 @@ public class MillyBubcapMushroomBlock extends BushBlock implements BonemealableB
         }
     }
 
+    @Override
     public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
         return !useContext.isSecondaryUseActive() && useContext.getItemInHand().is(this.asItem()) && state.getValue(CAPS) < 8 || super.canBeReplaced(state, useContext);
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         Vec3 vec3 = state.getOffset(level, pos);
         return switch (state.getValue(CAPS)) {
@@ -81,7 +93,7 @@ public class MillyBubcapMushroomBlock extends BushBlock implements BonemealableB
         };
     }
 
-
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(CAPS);
     }
@@ -97,14 +109,17 @@ public class MillyBubcapMushroomBlock extends BushBlock implements BonemealableB
         }
     }
 
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    @Override
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         return true;
     }
 
+    @Override
     public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
+    @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
 
         if (state.getValue(CAPS) == 8) this.growMushroom(level, pos, state, random);

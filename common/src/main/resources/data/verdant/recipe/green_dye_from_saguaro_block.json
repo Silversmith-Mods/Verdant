@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "verdant:saguaro_block"
+  },
+  "result": {
+    "id": "minecraft:green_dye"
+  },
+  "experience": 1.5,
+  "cookingtime": 200
+}

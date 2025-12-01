@@ -15,6 +15,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Fallable;
 import net.minecraft.world.level.block.MangrovePropaguleBlock;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -26,8 +27,8 @@ import java.util.Random;
 public class ModPropaguleBlock extends MangrovePropaguleBlock implements Fallable {
     private static final BooleanProperty WATERLOGGED;
 
-    public ModPropaguleBlock(Properties properties) {
-        super(properties);
+    public ModPropaguleBlock(TreeGrower treeGrower, Properties properties) {
+        super(treeGrower, properties);
     }
 
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean notify) {
@@ -75,7 +76,8 @@ public class ModPropaguleBlock extends MangrovePropaguleBlock implements Fallabl
         return state.isAir() || state.is(BlockTags.FIRE) || state.liquid() || state.canBeReplaced();
     }
 
-    public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
+    @Override
+    public void animateTick(BlockState blockState, Level level, BlockPos pos, RandomSource random) {
         if (random.nextInt(16) == 0) {
             BlockPos blockPos = pos.below();
             if (canFallThrough(level.getBlockState(blockPos))) {

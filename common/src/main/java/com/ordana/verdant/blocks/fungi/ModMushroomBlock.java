@@ -1,5 +1,6 @@
 package com.ordana.verdant.blocks.fungi;
 
+import com.mojang.serialization.MapCodec;
 import com.ordana.verdant.reg.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -19,6 +20,11 @@ public class ModMushroomBlock extends BushBlock {
 
     public ModMushroomBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    protected MapCodec<? extends BushBlock> codec() {
+        return simpleCodec(ModMushroomBlock::new);
     }
 
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {

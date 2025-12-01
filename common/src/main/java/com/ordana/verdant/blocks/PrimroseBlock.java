@@ -6,14 +6,12 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.CraftingContainer;
-import net.minecraft.world.inventory.TransientCraftingContainer;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -27,6 +25,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -52,7 +51,7 @@ public class PrimroseBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState blockState) {
         boolean bl = false;
         for (Direction dir : Direction.Plane.HORIZONTAL) {
             if (level.getBlockState(pos.relative(dir)).canBeReplaced() && canSurvive(this.defaultBlockState(), level, pos.relative(dir))) {
@@ -96,28 +95,16 @@ public class PrimroseBlock extends Block implements BonemealableBlock {
     private DyeColor getOffspringColor(ServerLevel level, PrimroseBlock mate) {
         DyeColor dyeColor = color;
         DyeColor dyeColor2 = mate.getColor();
-        CraftingContainer craftingContainer = makeContainer(dyeColor, dyeColor2);
-        Optional<Item> var10000 = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingContainer, level).map((craftingRecipe) ->
-                craftingRecipe.assemble(craftingContainer, level.registryAccess())).map(ItemStack::getItem);
+        CraftingInput craftingInput = makeCraftInput(dyeColor, dyeColor2);
+        Optional<Item> var10000 = level.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingInput, level).map((recipeHolder) -> ((CraftingRecipe)recipeHolder.value()).assemble(craftingInput, level.registryAccess())).map(ItemStack::getItem);
         Objects.requireNonNull(DyeItem.class);
         var10000 = var10000.filter(DyeItem.class::isInstance);
         Objects.requireNonNull(DyeItem.class);
-        return var10000.map(DyeItem.class::cast).map(DyeItem::getDyeColor).orElseGet(() ->
-                level.random.nextBoolean() ? dyeColor : dyeColor2);
+        return var10000.map(DyeItem.class::cast).map(DyeItem::getDyeColor).orElseGet(() -> level.random.nextBoolean() ? dyeColor : dyeColor2);
+
     }
 
-    private static CraftingContainer makeContainer(DyeColor fatherColor, DyeColor motherColor) {
-        CraftingContainer craftingContainer = new TransientCraftingContainer(new AbstractContainerMenu(null, -1) {
-            public ItemStack quickMoveStack(Player player, int index) {
-                return ItemStack.EMPTY;
-            }
-
-            public boolean stillValid(Player player) {
-                return false;
-            }
-        }, 2, 1);
-        craftingContainer.setItem(0, new ItemStack(DyeItem.byColor(fatherColor)));
-        craftingContainer.setItem(1, new ItemStack(DyeItem.byColor(motherColor)));
-        return craftingContainer;
+    private static CraftingInput makeCraftInput(DyeColor dyeColor, DyeColor dyeColor2) {
+        return CraftingInput.of(2, 1, List.of(new ItemStack(DyeItem.byColor(dyeColor)), new ItemStack(DyeItem.byColor(dyeColor2))));
     }
 }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "verdant:moss_clump"
+    }
+  },
+  "result": {
+    "id": "minecraft:moss_block",
+    "count": 1
+  }
+}

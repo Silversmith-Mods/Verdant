@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "log_unstrip",
+  "ingredients": [
+    {
+      "item": "verdant:birch_bark"
+    },
+    {
+      "item": "minecraft:stripped_birch_log"
+    }
+  ],
+  "result": {
+    "id": "minecraft:birch_log",
+    "count": 1
+  }
+}

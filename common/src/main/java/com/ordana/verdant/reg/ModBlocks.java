@@ -76,15 +76,15 @@ public class ModBlocks {
     //vegetation
 
     public static final Supplier<Block> MOSS = regBlock("moss", () ->
-            new MossMultifaceBlock(BlockBehaviour.Properties.copy(Blocks.MOSS_BLOCK).randomTicks().instabreak().sound(SoundType.MOSS_CARPET).noOcclusion().noCollission()));
+            new MossMultifaceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_BLOCK).randomTicks().instabreak().sound(SoundType.MOSS_CARPET).noOcclusion().noCollission()));
     public static final Supplier<Block> WEEDS = regWithItem("weeds", () ->
-            new WeedsBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).noCollission().strength(0.8f).sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
+            new WeedsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS).noCollission().strength(0.8f).sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY)));
     public static final Supplier<Block> EDGE_GRASS = regWithItem("edge_grass", () ->
             new EdgeGrassBlock(BlockBehaviour.Properties.of().noCollission().instabreak().sound(SoundType.GRASS).noOcclusion().replaceable()));
     public static final Supplier<Block> DOGWOOD = regWithItem("dogwood", () ->
-            new DogwoodBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).noCollission().strength(0.8f).offsetType(BlockBehaviour.OffsetType.XZ).sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
+            new DogwoodBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS).noCollission().strength(0.8f).offsetType(BlockBehaviour.OffsetType.XZ).sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
     public static final Supplier<Block> DUNE_GRASS = regWithItem("dune_grass", () ->
-            new SandBushBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).noCollission().strength(0.8f).offsetType(BlockBehaviour.OffsetType.XZ).sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
+            new SandBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS).noCollission().strength(0.8f).offsetType(BlockBehaviour.OffsetType.XZ).sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)));
     public static final Supplier<Block> BARLEY = regWithItem("barley", () ->
             new ModGrassBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable().noCollission().instabreak().sound(SoundType.GRASS).offsetType(BlockBehaviour.OffsetType.XYZ).ignitedByLava().pushReaction(PushReaction.DESTROY)));
     public static final Supplier<Block> ALOE_VERA = regWithItem("aloe_vera", () ->
@@ -211,77 +211,77 @@ public class ModBlocks {
             new DuckweedBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().sound(SoundType.PINK_PETALS).pushReaction(PushReaction.DESTROY)));
 
     public static final Supplier<Block> HANGING_ROOTS_WALL = regBlock("hanging_roots_wall", () ->
-            new WallRootsBlock(BlockBehaviour.Properties.copy(Blocks.HANGING_ROOTS)));
+            new WallRootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.HANGING_ROOTS)));
     public static final Supplier<IvyBlock> IVY = regWithItem("ivy", () ->
-            new IvyBlock(BlockBehaviour.Properties.copy(Blocks.VINE).noCollission().strength(0.2f)
+            new IvyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.VINE).noCollission().strength(0.2f)
                     .sound(SoundType.AZALEA_LEAVES)));
 
 
     public static final Supplier<Block> SPOROPHYTE = regWithItem("sporophyte", () ->
-            new SporophyteBlock(BlockBehaviour.Properties.copy(Blocks.GRASS).noCollission().instabreak().sound(SoundType.MOSS).offsetType(BlockBehaviour.OffsetType.XZ)));
+            new SporophyteBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS).noCollission().instabreak().sound(SoundType.MOSS).offsetType(BlockBehaviour.OffsetType.XZ)));
     public static final Supplier<Block> TALL_SPOROPHYTE = regWithItem("tall_sporophyte", () ->
-            new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.TALL_GRASS).noCollission().instabreak().sound(SoundType.MOSS).offsetType(BlockBehaviour.OffsetType.XZ)));
+            new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS).noCollission().instabreak().sound(SoundType.MOSS).offsetType(BlockBehaviour.OffsetType.XZ)));
 
 
     //fungi
     public static final Supplier<Block> CONK_FUNGUS = regWithItem("conk_fungus", () ->
             new ConkFungusBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).noCollission().instabreak().sound(SoundType.FUNGUS)));
     public static final Supplier<Block> PORTABELLA = regBlock("portabella", () ->
-            new GrowableMushroomBlock(BlockBehaviour.Properties.copy(Blocks.POPPY).noCollission().randomTicks().instabreak().sound(SoundType.FUNGUS).offsetType(BlockBehaviour.OffsetType.XZ).hasPostProcess(ModBlocks::always)));
+            new GrowableMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).noCollission().randomTicks().instabreak().sound(SoundType.FUNGUS).offsetType(BlockBehaviour.OffsetType.XZ).hasPostProcess(ModBlocks::always)));
     public static final Supplier<Block> CRIMINI = regBlock("crimini", () ->
-            new ModMushroomBlock(BlockBehaviour.Properties.copy(PORTABELLA.get())));
+            new ModMushroomBlock(BlockBehaviour.Properties.ofFullCopy(PORTABELLA.get())));
     public static final Supplier<Block> BUTTON_MUSHROOM = regBlock("button_mushroom", () ->
-            new ModMushroomBlock(BlockBehaviour.Properties.copy(PORTABELLA.get())));
+            new ModMushroomBlock(BlockBehaviour.Properties.ofFullCopy(PORTABELLA.get())));
     public static final Supplier<Block> STINKHORN_MUSHROOM = regWithItem("stinkhorn_mushroom", () ->
-            new GrowableMushroomBlock(BlockBehaviour.Properties.copy(PORTABELLA.get()).hasPostProcess(ModBlocks::always)));
+            new GrowableMushroomBlock(BlockBehaviour.Properties.ofFullCopy(PORTABELLA.get()).hasPostProcess(ModBlocks::always)));
     public static final Supplier<Block> WHITE_STINKHORN_MUSHROOM = regWithItem("white_stinkhorn_mushroom", () ->
-            new GrowableMushroomBlock(BlockBehaviour.Properties.copy(PORTABELLA.get()).hasPostProcess(ModBlocks::always)));
+            new GrowableMushroomBlock(BlockBehaviour.Properties.ofFullCopy(PORTABELLA.get()).hasPostProcess(ModBlocks::always)));
     public static final Supplier<Block> PHOSPHOR_FUNGUS = regWithItem("phosphor_fungus", () ->
-            new FloorAndSidesMushroomBlock(BlockBehaviour.Properties.copy(ModBlocks.CONK_FUNGUS.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 3)));
+            new FloorAndSidesMushroomBlock(BlockBehaviour.Properties.ofFullCopy(ModBlocks.CONK_FUNGUS.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 3)));
     public static final Supplier<Block> MUSHGLOOM = regWithItem("mushgloom", () ->
-            new FloorAndSidesMushroomBlock(BlockBehaviour.Properties.copy(ModBlocks.CONK_FUNGUS.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 1)));
+            new FloorAndSidesMushroomBlock(BlockBehaviour.Properties.ofFullCopy(ModBlocks.CONK_FUNGUS.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 1)));
     public static final Supplier<Block> MILLY_BUBCAP = regWithItem("milly_bubcap", () ->
-            new MillyBubcapMushroomBlock(BlockBehaviour.Properties.copy(Blocks.POPPY).noCollission().instabreak().sound(SoundType.FUNGUS).offsetType(BlockBehaviour.OffsetType.XZ)));
+            new MillyBubcapMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY).noCollission().instabreak().sound(SoundType.FUNGUS).offsetType(BlockBehaviour.OffsetType.XZ)));
 
     public static final Supplier<Block> POTTED_PORTABELLA = regBlock("potted_portabella", () ->
-            new FlowerPotBlock(PORTABELLA.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_POPPY).instabreak().noOcclusion()));
+            new FlowerPotBlock(PORTABELLA.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_POPPY).instabreak().noOcclusion()));
     public static final Supplier<Block> POTTED_CRIMINI = regBlock("potted_crimini", () ->
-            new FlowerPotBlock(CRIMINI.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get())));
+            new FlowerPotBlock(CRIMINI.get(), BlockBehaviour.Properties.ofFullCopy(POTTED_PORTABELLA.get())));
     public static final Supplier<Block> POTTED_BUTTON_MUSHROOM = regBlock("potted_button_mushroom", () ->
-            new FlowerPotBlock(BUTTON_MUSHROOM.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get())));
+            new FlowerPotBlock(BUTTON_MUSHROOM.get(), BlockBehaviour.Properties.ofFullCopy(POTTED_PORTABELLA.get())));
     public static final Supplier<Block> POTTED_STINKHORN_MUSHROOM = regBlock("potted_stinkhorn_mushroom", () ->
-            new FlowerPotBlock(STINKHORN_MUSHROOM.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get())));
+            new FlowerPotBlock(STINKHORN_MUSHROOM.get(), BlockBehaviour.Properties.ofFullCopy(POTTED_PORTABELLA.get())));
     public static final Supplier<Block> POTTED_WHITE_STINKHORN_MUSHROOM = regBlock("potted_white_stinkhorn_mushroom", () ->
-            new FlowerPotBlock(WHITE_STINKHORN_MUSHROOM.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get())));
+            new FlowerPotBlock(WHITE_STINKHORN_MUSHROOM.get(), BlockBehaviour.Properties.ofFullCopy(POTTED_PORTABELLA.get())));
     public static final Supplier<Block> POTTED_PHOSPHOR_FUNGUS = regBlock("potted_phosphor_fungus", () ->
-            new FlowerPotBlock(PHOSPHOR_FUNGUS.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 3)));
+            new FlowerPotBlock(PHOSPHOR_FUNGUS.get(), BlockBehaviour.Properties.ofFullCopy(POTTED_PORTABELLA.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 3)));
     public static final Supplier<Block> POTTED_MUSHGLOOM = regBlock("potted_mushgloom", () ->
-            new FlowerPotBlock(MUSHGLOOM.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 1)));
+            new FlowerPotBlock(MUSHGLOOM.get(), BlockBehaviour.Properties.ofFullCopy(POTTED_PORTABELLA.get()).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 1)));
     public static final Supplier<Block> POTTED_MILLY_BUBCAP = regBlock("potted_milly_bubcap", () ->
-            new FlowerPotBlock(MILLY_BUBCAP.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get())));
+            new FlowerPotBlock(MILLY_BUBCAP.get(), BlockBehaviour.Properties.ofFullCopy(POTTED_PORTABELLA.get())));
     public static final Supplier<Block> POTTED_SPOROPHYTE = regBlock("potted_sporophyte", () ->
-            new FlowerPotBlock(SPOROPHYTE.get(), BlockBehaviour.Properties.copy(POTTED_PORTABELLA.get())));
+            new FlowerPotBlock(SPOROPHYTE.get(), BlockBehaviour.Properties.ofFullCopy(POTTED_PORTABELLA.get())));
 
     public static final Supplier<Block> CONK_FUNGUS_BLOCK = regWithItem("conk_fungus_block", () ->
-            new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.DIRT).strength(0.2F).sound(SoundType.STEM)));
+            new HugeMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.DIRT).strength(0.2F).sound(SoundType.STEM)));
     public static final Supplier<Block> PORTABELLA_BLOCK = regWithItem("portabella_block", () ->
-            new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
+            new HugeMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.DIRT).strength(0.2F).sound(SoundType.WOOD)));
     public static final Supplier<Block> STINKHORN_MUSHROOM_BLOCK = regWithItem("stinkhorn_mushroom_block", () ->
-            new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_BLACK).strength(0.2F).sound(SoundType.WOOD)));
+            new HugeMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_BLACK).strength(0.2F).sound(SoundType.WOOD)));
     public static final Supplier<Block> WHITE_STINKHORN_MUSHROOM_BLOCK = regWithItem("white_stinkhorn_mushroom_block", () ->
-            new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.SAND).strength(0.2F).sound(SoundType.WOOD)));
+            new HugeMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.SAND).strength(0.2F).sound(SoundType.WOOD)));
     public static final Supplier<Block> MILLY_BUBCAP_BLOCK = regWithItem("milly_bubcap_block", () ->
-            new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_BROWN).strength(0.2F).sound(SoundType.WOOD)));
+            new HugeMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_BROWN).strength(0.2F).sound(SoundType.WOOD)));
     public static final Supplier<Block> PHOSPHOR_FUNGUS_BLOCK = regWithItem("phosphor_fungus_block", () ->
-            new PhosphorFungusBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_LIGHT_BLUE).strength(0.2F).sound(SoundType.WOOD).emissiveRendering(ModBlocks::always).noOcclusion().isValidSpawn(ModBlocks::never).isRedstoneConductor(ModBlocks::never).isSuffocating(ModBlocks::never).isViewBlocking(ModBlocks::never).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 1)));
+            new PhosphorFungusBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_LIGHT_BLUE).strength(0.2F).sound(SoundType.WOOD).emissiveRendering(ModBlocks::always).noOcclusion().isValidSpawn(ModBlocks::never).isRedstoneConductor(ModBlocks::never).isSuffocating(ModBlocks::never).isViewBlocking(ModBlocks::never).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 1)));
 
 
     public static final Supplier<Block> PHOSPHOR_SHROOMLIGHT = regWithItem("phosphor_shroomlight", () ->
-            new Block(BlockBehaviour.Properties.copy(Blocks.SHROOMLIGHT).mapColor(MapColor.COLOR_CYAN).sound(SoundType.SHROOMLIGHT).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 8)));
+            new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SHROOMLIGHT).mapColor(MapColor.COLOR_CYAN).sound(SoundType.SHROOMLIGHT).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 8)));
     public static final Supplier<Block> MUSHGLOOM_BLOCK = regWithItem("mushgloom_block", () ->
-            new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_BLUE).strength(0.2F).sound(SoundType.WOOD).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 1)));
+            new HugeMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_MUSHROOM_BLOCK).mapColor(MapColor.TERRACOTTA_BLUE).strength(0.2F).sound(SoundType.WOOD).emissiveRendering(ModBlocks::always).lightLevel((blockStatex) -> 1)));
     public static final Supplier<Block> CAVE_MUSHROOM_STEM = regWithItem("cave_mushroom_stem", () ->
-            new HugeMushroomBlock(BlockBehaviour.Properties.copy(Blocks.MUSHROOM_STEM).mapColor(MapColor.TERRACOTTA_GRAY).strength(0.2F).sound(SoundType.WOOD)));
+            new HugeMushroomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MUSHROOM_STEM).mapColor(MapColor.TERRACOTTA_GRAY).strength(0.2F).sound(SoundType.WOOD)));
 
 
 

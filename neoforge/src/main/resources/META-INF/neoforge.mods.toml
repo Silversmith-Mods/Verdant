@@ -1,0 +1,50 @@
+
+modLoader="javafml"
+
+loaderVersion="[4,)"
+
+license="LGPLv3"
+
+[[mods]]
+
+modId="verdant"
+
+version = "${version}"
+
+displayName="Verdant"
+
+logoFile="icon.gif"
+
+credits="Ordana, cassiancc"
+
+authors="Ordana, Kayla_the_bee"
+
+itemIcon="verdant:template"
+description='''
+Abundant foliage and greenery bring your world to life.
+'''
+
+[[dependencies.verdant]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.verdant]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.1]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.verdant]]
+    modId="moonlight"
+    type="required"
+    versionRange="[1.20-2.13.30,]"
+    ordering="NONE"
+    side="BOTH"
+
+
+[[mixins]]
+config = "verdant-common.mixins.json"

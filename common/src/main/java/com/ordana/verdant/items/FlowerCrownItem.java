@@ -3,6 +3,8 @@ package com.ordana.verdant.items;
 import com.ordana.verdant.reg.ModParticles;
 import dev.architectury.injectables.annotations.PlatformOnly;
 import net.minecraft.Util;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -10,6 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -22,7 +25,7 @@ import java.util.function.Supplier;
 
 public class FlowerCrownItem extends ArmorItem {
 
-    public FlowerCrownItem(ArmorMaterial material, Type type, Properties properties) {
+    public FlowerCrownItem(Holder<ArmorMaterial> material, Type type, Properties properties) {
         super(material, type, properties);
     }
 
@@ -66,7 +69,7 @@ public class FlowerCrownItem extends ArmorItem {
 
     @Nullable
     public static String getModelTexture(ItemStack stack) {
-        if (stack.hasCustomHoverName()) {
+        if (stack.has(DataComponents.CUSTOM_NAME)) {
             var name = stack.getHoverName().getString();
             var m = SUPPORTERS_LIST.get(name.toLowerCase(Locale.ROOT));
             if (m != null) return m.textureLocation;
@@ -89,7 +92,7 @@ public class FlowerCrownItem extends ArmorItem {
 
     @Nullable
     public static SpecialType getSpecialType(ItemStack stack) {
-        if (stack.hasCustomHoverName()) {
+        if (stack.has(DataComponents.CUSTOM_NAME)) {
             var name = stack.getHoverName().getString();
             return SUPPORTERS_LIST.get(name.toLowerCase(Locale.ROOT));
         }

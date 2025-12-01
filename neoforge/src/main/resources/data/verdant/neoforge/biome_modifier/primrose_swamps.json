@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#verdant:has_primrose_swamp",
+  "features": [
+    "verdant:primrose_patch_swamp"
+  ],
+  "step": "vegetal_decoration"
+}

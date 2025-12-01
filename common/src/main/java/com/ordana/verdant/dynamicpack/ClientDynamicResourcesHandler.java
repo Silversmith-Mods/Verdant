@@ -39,10 +39,10 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
         return Verdant.LOGGER;
     }
 
-    @Override
-    public boolean dependsOnLoadedPacks() {
-        return true;
-    }
+//    @Override
+//    public boolean dependsOnLoadedPacks() {
+//        return true;
+//    }
 
     public void addLeafPilesModel(StaticResource resource, String id, ResourceLocation texturePath) {
         String string = new String(resource.data, StandardCharsets.UTF_8);
@@ -259,7 +259,7 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
     }
 
     public static final Predicate<String> LOOKS_LIKE_LEAF_TEXTURE = s -> {
-        s = new ResourceLocation(s).getPath();
+        s = ResourceLocation.parse(s).getPath();
         return !s.contains("_bushy") && !s.contains("_snow") && !s.contains("_overlay");
     };
 }

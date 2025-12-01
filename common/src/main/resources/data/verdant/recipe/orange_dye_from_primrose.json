@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "verdant:orange_primrose"
+    }
+  ],
+  "result": {
+    "id": "minecraft:orange_dye",
+    "count": 1
+  }
+}

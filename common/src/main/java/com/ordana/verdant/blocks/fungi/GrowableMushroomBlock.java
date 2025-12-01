@@ -1,5 +1,6 @@
 package com.ordana.verdant.blocks.fungi;
 
+import com.mojang.serialization.MapCodec;
 import com.ordana.verdant.Verdant;
 import com.ordana.verdant.reg.ModBlocks;
 import net.minecraft.core.BlockPos;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.phys.Vec3;
@@ -25,6 +27,11 @@ public class GrowableMushroomBlock extends ModMushroomBlock implements Bonemeala
 
     public GrowableMushroomBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    protected MapCodec<? extends BushBlock> codec() {
+        return simpleCodec(GrowableMushroomBlock::new);
     }
 
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
@@ -56,7 +63,7 @@ public class GrowableMushroomBlock extends ModMushroomBlock implements Bonemeala
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
         return true;
     }
 

@@ -1,17 +1,14 @@
 package com.ordana.verdant.network;
 
-import com.ordana.verdant.Verdant;
-import net.mehvahdjukaar.moonlight.api.platform.network.ChannelHandler;
-import net.mehvahdjukaar.moonlight.api.platform.network.NetworkDir;
+import net.mehvahdjukaar.moonlight.api.platform.network.NetworkHelper;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
 public class NetworkHandler {
 
-    public static final ChannelHandler CHANNEL = ChannelHandler.builder(Verdant.MOD_ID)
-            .register(NetworkDir.PLAY_TO_CLIENT, SendCustomParticlesPacket.class, SendCustomParticlesPacket::new)
-            .build();
-
-
     public static void init() {
+        NetworkHelper.addNetworkRegistration(registerMessagesEvent -> {
+            registerMessagesEvent.registerClientBound(new CustomPacketPayload.TypeAndCodec<>(SendCustomParticlesPacket.TYPE, SendCustomParticlesPacket.STREAM_CODEC));
+        }, 1);
     }
 
 

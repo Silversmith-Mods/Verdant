@@ -2,6 +2,7 @@ package com.ordana.verdant.blocks;
 
 import com.ordana.verdant.reg.ModBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
@@ -15,12 +16,12 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 
 public class MuscariBlock extends FlowerBlock implements BonemealableBlock {
 
-    public MuscariBlock(MobEffect suspiciousStewEffect, int effectDuration, Properties properties) {
+    public MuscariBlock(Holder<MobEffect> suspiciousStewEffect, int effectDuration, Properties properties) {
         super(suspiciousStewEffect, effectDuration, properties);
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState blockState) {
         return level.getBlockState(pos.above()).canBeReplaced();
     }
 

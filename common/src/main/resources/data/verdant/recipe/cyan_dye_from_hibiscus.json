@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "verdant:blue_hibiscus"
+    }
+  ],
+  "result": {
+    "id": "minecraft:cyan_dye",
+    "count": 1
+  }
+}

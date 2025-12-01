@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "log_unstrip",
+  "ingredients": [
+    {
+      "item": "verdant:crimson_scales"
+    },
+    {
+      "item": "minecraft:stripped_crimson_stem"
+    }
+  ],
+  "result": {
+    "id": "minecraft:crimson_stem",
+    "count": 1
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#verdant:has_shrub",
-  "features": [
-    "verdant:shrub_patch"
-  ],
-  "step": "vegetal_decoration"
-}

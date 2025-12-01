@@ -1,8 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#verdant:has_dune_grass",
-  "features": [
-    "verdant:dune_grass_patch"
-  ],
-  "step": "vegetal_decoration"
-}

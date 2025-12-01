@@ -1,5 +1,6 @@
 package com.ordana.verdant.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -18,13 +19,18 @@ public class ShrubBushBlock extends BushBlock implements BonemealableBlock {
     super(properties);
   }
 
-  @Override
+    @Override
+    protected MapCodec<? extends BushBlock> codec() {
+        return simpleCodec(ShrubBushBlock::new);
+    }
+
+    @Override
   protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
     return state.isFaceSturdy(level, pos, Direction.DOWN, SupportType.CENTER);
   }
 
   @Override
-  public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+  public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
     return true;
   }
 

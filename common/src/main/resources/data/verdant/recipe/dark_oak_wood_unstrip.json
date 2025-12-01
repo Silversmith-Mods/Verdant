@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wood_unstrip",
+  "ingredients": [
+    {
+      "item": "verdant:dark_oak_bark"
+    },
+    {
+      "item": "minecraft:stripped_dark_oak_wood"
+    }
+  ],
+  "result": {
+    "id": "minecraft:dark_oak_wood",
+    "count": 1
+  }
+}

@@ -1,5 +1,6 @@
 package com.ordana.verdant.blocks;
 
+import com.mojang.serialization.MapCodec;
 import com.ordana.verdant.entities.FallingLayerEntity;
 import com.ordana.verdant.util.WeatheringHelper;
 import dev.architectury.injectables.annotations.PlatformOnly;
@@ -7,6 +8,8 @@ import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -22,10 +25,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -119,7 +119,8 @@ public class LeafPileBlock extends LayerBlock implements BonemealableBlock {
         int layers = this.getLayers(state);
 
         if (layers > 3) {
-            if (entity instanceof LivingEntity && !(entity instanceof Fox || entity instanceof Bee || EnchantmentHelper.getEnchantmentLevel(Enchantments.DEPTH_STRIDER, (LivingEntity) entity) > 0)) {
+            var DEPTH_STRIDER = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolder(Enchantments.DEPTH_STRIDER);
+            if (DEPTH_STRIDER.isPresent() && entity instanceof LivingEntity && !(entity instanceof Fox || entity instanceof Bee || EnchantmentHelper.getEnchantmentLevel(DEPTH_STRIDER.get(), (LivingEntity) entity) > 0)) {
                 float stuck = COLLISIONS[Math.max(0, layers - 1)];
                 entity.makeStuckInBlock(state, new Vec3(stuck, 1, stuck));
 
@@ -174,6 +175,11 @@ public class LeafPileBlock extends LayerBlock implements BonemealableBlock {
     }
 
     @Override
+    protected MapCodec<? extends FallingBlock> codec() {
+        return null;
+    }
+
+    @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
         if (direction == Direction.DOWN && state.getValue(LAYERS) <= 1) {
             state = state.setValue(LAYERS, neighborState.is(Blocks.WATER) ? 0 : 1);
@@ -209,7 +215,7 @@ public class LeafPileBlock extends LayerBlock implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         return this.canBeBonemealed;
     }
 

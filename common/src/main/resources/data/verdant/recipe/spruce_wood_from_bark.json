@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wood_from_bark",
+  "ingredients": [
+    {
+      "item": "verdant:spruce_bark"
+    },
+    {
+      "item": "minecraft:spruce_log"
+    }
+  ],
+  "result": {
+    "id": "minecraft:spruce_wood",
+    "count": 1
+  }
+}

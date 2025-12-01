@@ -10,6 +10,7 @@ import com.ordana.verdant.worldgen.features.HugeConkFungusFeature;
 import com.ordana.verdant.worldgen.features.HugeForkingMushroomFeature;
 import com.ordana.verdant.worldgen.features.SaguaroFeature;
 import com.ordana.verdant.worldgen.features.WallMushroomFeature;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;

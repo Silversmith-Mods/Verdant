@@ -1,8 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#verdant:has_aloe_vera",
-  "features": [
-    "verdant:aloe_vera_patch"
-  ],
-  "step": "vegetal_decoration"
-}

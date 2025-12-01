@@ -1,8 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#verdant:has_moss",
-  "features": [
-    "verdant:moss_patch"
-  ],
-  "step": "vegetal_decoration"
-}

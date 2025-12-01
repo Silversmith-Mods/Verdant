@@ -1,5 +1,6 @@
 package com.ordana.verdant.blocks;
 
+import com.mojang.serialization.MapCodec;
 import com.ordana.verdant.Verdant;
 import com.ordana.verdant.reg.ModBlocks;
 import net.minecraft.core.BlockPos;
@@ -24,23 +25,28 @@ public class DogwoodBlock extends BushBlock implements BonemealableBlock {
     super(properties);
   }
 
-  @Override
-  protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
-    return state.is(BlockTags.DIRT) || state.is(Blocks.SNOW_BLOCK);
-  }
+   @Override
+   protected MapCodec<? extends BushBlock> codec() {
+       return simpleCodec(DogwoodBlock::new);
+   }
 
-  @Override
-  public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
-    return true;
-  }
+   @Override
+   protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+     return state.is(BlockTags.DIRT) || state.is(Blocks.SNOW_BLOCK);
+   }
 
-  @Override
-  public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
-    return random.nextBoolean();
-  }
+   @Override
+   public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+        return true;
+   }
 
-  @Override
-  public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-    popResource(level, pos, new ItemStack(this));
-  }
+   @Override
+   public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+     return random.nextBoolean();
+   }
+
+   @Override
+   public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+     popResource(level, pos, new ItemStack(this));
+   }
 }

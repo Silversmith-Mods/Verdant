@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wood_unstrip",
+  "ingredients": [
+    {
+      "item": "verdant:crimson_scales"
+    },
+    {
+      "item": "minecraft:stripped_crimson_hyphae"
+    }
+  ],
+  "result": {
+    "id": "minecraft:crimson_hyphae",
+    "count": 1
+  }
+}

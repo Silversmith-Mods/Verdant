@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:moss_block"
+    }
+  ],
+  "result": {
+    "id": "verdant:moss_clump",
+    "count": 1
+  }
+}

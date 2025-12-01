@@ -100,7 +100,7 @@ public class SaguaroArmBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
         return (level.isEmptyBlock(pos.above()) || level.getBlockState(pos.above()).is(ModBlocks.SAGUARO_ARM.get())) && level.isEmptyBlock(pos.above().above());
     }
 

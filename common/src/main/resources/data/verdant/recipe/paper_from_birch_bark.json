@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "verdant:birch_bark"
+    },
+    {
+      "item": "verdant:birch_bark"
+    },
+    {
+      "item": "verdant:birch_bark"
+    }
+  ],
+  "result": {
+    "id": "minecraft:paper",
+    "count": 1
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": [
+    "verdant:conk_fungus",
+    "verdant:conk_fungus_surface",
+    "verdant:stinkhorn",
+    "verdant:stinkhorn_deepslate",
+    "verdant:portabella",
+    "verdant:phosphor_fungus",
+    "verdant:mushgloom",
+    "verdant:rare_huge_mushroom"
+  ],
+  "step": "underground_ores"
+}

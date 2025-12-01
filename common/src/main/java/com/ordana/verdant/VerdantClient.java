@@ -28,7 +28,7 @@ public class VerdantClient {
         ClientHelper.addClientSetup(VerdantClient::setup);
         ClientDynamicResourcesHandler.INSTANCE.register();
 
-        ClientHelper.registerOptionalTexturePack(Verdant.res("visual_waxed_iron_items"));
+        ClientHelper.registerOptionalTexturePack(Verdant.res("visual_waxed_iron_items"), false);
 
         ClientHelper.addEntityRenderersRegistration(VerdantClient::registerEntityRenderers);
         ClientHelper.addBlockColorsRegistration(VerdantClient::registerBlockColors);

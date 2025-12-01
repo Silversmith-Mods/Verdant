@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "verdant:stinkhorn_mushroom"
+    }
+  ],
+  "result": {
+    "id": "minecraft:black_dye",
+    "count": 1
+  }
+}

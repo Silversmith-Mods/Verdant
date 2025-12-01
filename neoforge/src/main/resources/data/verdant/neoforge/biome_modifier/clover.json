@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#verdant:has_clover",
+  "features": [
+    "verdant:clover_patch"
+  ],
+  "step": "vegetal_decoration"
+}

@@ -1,6 +1,7 @@
 package com.ordana.verdant.blocks;
 
 import com.google.common.collect.Lists;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -16,6 +17,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
@@ -49,7 +51,12 @@ public class IvyBlock extends MultifaceBlock implements BonemealableBlock {
 		this.registerDefaultState(this.defaultBlockState().setValue(AGE, 7));
 	}
 
-	@Override
+    @Override
+    protected MapCodec<? extends MultifaceBlock> codec() {
+        return simpleCodec(IvyBlock::new);
+    }
+
+    @Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(AGE);
@@ -78,12 +85,12 @@ public class IvyBlock extends MultifaceBlock implements BonemealableBlock {
 		return state.getValue(AGE) < MAX_AGE;
 	}
 
-	@Override
-	public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
-		return state.getValue(AGE) < 0 || Stream.of(DIRECTIONS).anyMatch(direction -> this.isValidStateForPlacement(level, state, pos, direction.getOpposite()));
-	}
+    @Override
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+        return state.getValue(AGE) < 0 || Stream.of(DIRECTIONS).anyMatch(direction -> this.isValidStateForPlacement(level, state, pos, direction.getOpposite()));
+    }
 
-	@Override
+    @Override
 	public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
 		return true;//this.canGrowPseudoAdjacent(level, pos, state) || this.canGrowAdjacent(level, pos, state) || this.canGrowExternal(level, pos, state);
 	}
@@ -356,19 +363,18 @@ public class IvyBlock extends MultifaceBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-		ItemStack stack = player.getItemInHand(hand);
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
 		if (stack.getItem() instanceof ShearsItem && state.getValue(AGE) < MAX_AGE) {
 			level.playSound(player, pos, SoundEvents.GROWING_PLANT_CROP, SoundSource.BLOCKS, 1.0f, 1.0f);
 			ParticleUtils.spawnParticlesOnBlockFaces(level, pos, new BlockParticleOption(ParticleTypes.BLOCK, state), UniformInt.of(3, 5));
 			if (player instanceof ServerPlayer) {
-				if (!player.getAbilities().instabuild) stack.hurtAndBreak(1, player, (l) -> l.broadcastBreakEvent(hand));
+				if (!player.getAbilities().instabuild) stack.hurtAndBreak(1, player, Player.getSlotForHand(hand));
 				player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
 				level.gameEvent(player, GameEvent.SHEAR, pos);
 				level.setBlockAndUpdate(pos, state.setValue(AGE, MAX_AGE));
 			}
-			return InteractionResult.sidedSuccess(level.isClientSide);
+			return ItemInteractionResult.sidedSuccess(level.isClientSide);
 		}
-		return super.use(state, level, pos, player, hand, hitResult);
+		return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
 	}
 }

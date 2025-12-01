@@ -129,7 +129,7 @@ public class ModCreativeTab {
         //if (CommonConfigs.isEnabled(key)) {
         ItemLike[] entries = Arrays.stream(items).map((s -> (ItemLike) (s.get()))).toArray(ItemLike[]::new);
         if(MOD_TAB != null){
-            tab = MOD_TAB.getKey();
+            tab = (ResourceKey<CreativeModeTab>) MOD_TAB.getKey();
         }
         event.addAfter(tab, targetPred, entries);
     }
@@ -144,7 +144,7 @@ public class ModCreativeTab {
         //if (CommonConfigs.isEnabled(key)) {
         ItemLike[] entries = Arrays.stream(items).map(s -> (ItemLike) s.get()).toArray(ItemLike[]::new);
         if(MOD_TAB != null){
-            tab = MOD_TAB.getKey();
+            tab = (ResourceKey<CreativeModeTab>) MOD_TAB.getKey();
         }
         event.addBefore(tab, targetPred, entries);
         //}

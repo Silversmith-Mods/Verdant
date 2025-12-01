@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#verdant:has_dense_grass",
+  "features": [
+    "verdant:dense_grass_patch"
+  ],
+  "step": "vegetal_decoration"
+}

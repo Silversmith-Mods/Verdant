@@ -35,6 +35,7 @@ public class SaguaroBlock extends RotatedPillarBlock implements BonemealableBloc
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(ATTACHED, true).setValue(AXIS, Direction.Axis.Y));
     }
 
+    @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         boolean bl = false;
         for (Direction dir : Direction.values()) {
@@ -44,12 +45,14 @@ public class SaguaroBlock extends RotatedPillarBlock implements BonemealableBloc
         return bl;
     }
 
+    @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!state.canSurvive(level, pos)) {
             level.destroyBlock(pos, true);
         }
     }
 
+    @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         BlockPos blockPos = pos.above();
         if (level.isEmptyBlock(blockPos)) {
@@ -72,14 +75,17 @@ public class SaguaroBlock extends RotatedPillarBlock implements BonemealableBloc
         }
     }
 
+    @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return COLLISION_SHAPE;
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return OUTLINE_SHAPE;
     }
 
+    @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
         if (state.getValue(AXIS).isVertical() && level.getBlockState(pos.above()).is(this)) return state.setValue(ATTACHED, false);
         if (!state.canSurvive(level, pos)) {
@@ -89,15 +95,18 @@ public class SaguaroBlock extends RotatedPillarBlock implements BonemealableBloc
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
     }
 
+    @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         entity.hurt(level.damageSources().cactus(), 1.0F);
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE, ATTACHED, AXIS);
     }
 
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+    @Override
+    protected boolean isPathfindable(BlockState blockState, PathComputationType pathComputationType) {
         return false;
     }
 
@@ -108,7 +117,7 @@ public class SaguaroBlock extends RotatedPillarBlock implements BonemealableBloc
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
         return true;
     }
 

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "verdant:portabella"
-  },
-  "result": "verdant:grilled_portabella",
-  "experience": 0.35,
-  "cookingtime": 200
-}

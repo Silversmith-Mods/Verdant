@@ -1,1 +1,1 @@
-# Verdant codebase for creating multiloader mods
+# Codebase of the Verdant mod

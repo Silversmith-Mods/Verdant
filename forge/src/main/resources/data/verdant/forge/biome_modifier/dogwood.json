@@ -1,8 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#verdant:has_dogwood",
-  "features": [
-    "verdant:dogwood_patch"
-  ],
-  "step": "vegetal_decoration"
-}

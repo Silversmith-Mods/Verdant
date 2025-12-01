@@ -1,8 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#verdant:has_primrose",
-  "features": [
-    "verdant:primrose_patch"
-  ],
-  "step": "vegetal_decoration"
-}

@@ -1,5 +1,6 @@
 package com.ordana.verdant.reg;
 
+import com.ordana.verdant.PlatformSpecific;
 import com.ordana.verdant.Verdant;
 import com.ordana.verdant.items.*;
 import com.ordana.verdant.items.materials.FlowerCrownMaterial;
@@ -73,7 +74,8 @@ public class ModItems {
         for (WoodType type : woodTypes) {
             String name = !type.canBurn() ? type.getVariantId("scales", false) : type.getVariantId("bark", false);
 
-            Item item = new WoodBasedItem(new Item.Properties(), type, 200);
+            Item item = new WoodBasedItem(new Item.Properties(), type);
+            PlatformSpecific.registerFuelValue(item, 200);
             event.register(Verdant.res(name), item);
             BARK.put(type, item);
             type.addChild("verdant:bark", item);

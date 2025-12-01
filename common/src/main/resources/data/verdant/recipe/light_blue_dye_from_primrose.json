@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "verdant:light_blue_primrose"
+    }
+  ],
+  "result": {
+    "id": "minecraft:light_blue_dye",
+    "count": 1
+  }
+}

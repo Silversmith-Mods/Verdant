@@ -2,8 +2,8 @@ package com.ordana.verdant.configs;
 
 import com.ordana.verdant.Verdant;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
-import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigSpec;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
+import net.mehvahdjukaar.moonlight.api.platform.configs.ModConfigHolder;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 public class CommonConfigs {
 
 
-    public static final ConfigSpec SERVER_SPEC;
+    public static final ModConfigHolder SERVER_SPEC;
 
     public static final Supplier<Boolean> CREATIVE_TAB;
     public static final Supplier<Boolean> CREATIVE_DROP;
@@ -26,8 +26,6 @@ public class CommonConfigs {
     static{
         ConfigBuilder builder = ConfigBuilder.create(Verdant.res("common"), ConfigType.COMMON);
 
-        builder.setSynced();
-
         builder.push("general");
         CREATIVE_TAB = builder.define("creative_tab", true);
         CREATIVE_DROP = builder.comment("Drop stuff when in creative").define("drop_in_creative", false);
@@ -38,7 +36,7 @@ public class CommonConfigs {
 
         builder.pop();
 
-        SERVER_SPEC = builder.buildAndRegister();
-        SERVER_SPEC.loadFromFile();
+        SERVER_SPEC = builder.build();
+        SERVER_SPEC.forceLoad();
     }
 }
