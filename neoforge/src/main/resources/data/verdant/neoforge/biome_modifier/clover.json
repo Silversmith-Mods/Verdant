@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
-  "biomes": "#verdant:has_clover",
+  "biomes": "#verdant:has_clovers",
   "features": [
     "verdant:clover_patch"
   ],

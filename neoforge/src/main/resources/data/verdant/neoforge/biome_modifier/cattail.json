@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
-  "biomes": "#verdant:has_cattail",
+  "biomes": "#verdant:has_cattails",
   "features": [
     "verdant:cattail_patch"
   ],
