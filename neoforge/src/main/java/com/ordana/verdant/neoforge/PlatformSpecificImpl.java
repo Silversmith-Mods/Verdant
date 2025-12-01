@@ -12,6 +12,6 @@ public class PlatformSpecificImpl {
     }
 
     public static void registerFuelValue(Item item, int fuelValue) {
-        //TODO add via datamap
+        //added via datamap
     }
 }
