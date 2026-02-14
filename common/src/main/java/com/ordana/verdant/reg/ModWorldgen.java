@@ -10,7 +10,6 @@ import com.ordana.verdant.worldgen.features.HugeConkFungusFeature;
 import com.ordana.verdant.worldgen.features.HugeForkingMushroomFeature;
 import com.ordana.verdant.worldgen.features.SaguaroFeature;
 import com.ordana.verdant.worldgen.features.WallMushroomFeature;
-import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -76,8 +75,8 @@ public class ModWorldgen {
         ResourceKey<PlacedFeature> saguaro_patch = ResourceKey.create(Registries.PLACED_FEATURE, Verdant.res("saguaro_patch"));
         PlatformSpecific.addFeatureToBiome(GenerationStep.Decoration.VEGETAL_DECORATION, ModTags.HAS_SAGUARO, saguaro_patch);
 
-        ResourceKey<PlacedFeature> aloe_vera_patch = ResourceKey.create(Registries.PLACED_FEATURE, Verdant.res("aloe_vera_patch"));
-        PlatformSpecific.addFeatureToBiome(GenerationStep.Decoration.VEGETAL_DECORATION, ModTags.HAS_ALOE_VERA, aloe_vera_patch);
+        //ResourceKey<PlacedFeature> aloe_vera_patch = ResourceKey.create(Registries.PLACED_FEATURE, Verdant.res("aloe_vera_patch"));
+        //PlatformSpecific.addFeatureToBiome(GenerationStep.Decoration.VEGETAL_DECORATION, ModTags.HAS_ALOE_VERA, aloe_vera_patch);
 
         ResourceKey<PlacedFeature> boxwood_patch = ResourceKey.create(Registries.PLACED_FEATURE, Verdant.res("boxwood_patch"));
         PlatformSpecific.addFeatureToBiome(GenerationStep.Decoration.VEGETAL_DECORATION, ModTags.HAS_BOXWOOD, boxwood_patch);

@@ -2,7 +2,6 @@ package com.ordana.verdant.mixins;
 
 import com.ordana.verdant.Verdant;
 import com.ordana.verdant.blocks.LeafPileBlock;
-import com.ordana.verdant.network.NetworkHandler;
 import com.ordana.verdant.network.SendCustomParticlesPacket;
 import com.ordana.verdant.util.WeatheringHelper;
 import net.mehvahdjukaar.moonlight.api.platform.network.NetworkHelper;

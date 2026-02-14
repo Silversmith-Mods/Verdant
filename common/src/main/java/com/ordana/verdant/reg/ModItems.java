@@ -1,15 +1,12 @@
 package com.ordana.verdant.reg;
 
-import com.ordana.verdant.PlatformSpecific;
 import com.ordana.verdant.Verdant;
 import com.ordana.verdant.items.*;
 import com.ordana.verdant.items.materials.FlowerCrownMaterial;
-import net.mehvahdjukaar.moonlight.api.item.WoodBasedItem;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
@@ -25,7 +22,7 @@ public class ModItems {
 
     public static void init() {
         BlockSetAPI.addDynamicItemRegistration(ModItems::registerLeafPilesItems, LeavesType.class);
-        BlockSetAPI.addDynamicItemRegistration(ModItems::registerBark, WoodType.class);
+        //BlockSetAPI.addDynamicItemRegistration(ModItems::registerBark, WoodType.class);
 
     }
 
@@ -67,6 +64,7 @@ public class ModItems {
 
     //bark
 
+    /*
     public static final Map<WoodType, Item> BARK = new LinkedHashMap<>();
 
 
@@ -81,6 +79,8 @@ public class ModItems {
             type.addChild("verdant:bark", item);
         }
     }
+
+     */
 
     private static void registerLeafPilesItems(Registrator<Item> event, Collection<LeavesType> leavesTypes) {
         for (LeavesType type : leavesTypes) {

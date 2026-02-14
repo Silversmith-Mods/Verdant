@@ -1,3 +1,6 @@
 {
-  "parent": "verdant:block/leaf_piles/jungle_leaf_pile_height2"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "verdant:block/light_jungle_leaves"
+  }
 }

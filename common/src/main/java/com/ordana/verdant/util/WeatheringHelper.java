@@ -4,13 +4,10 @@ import com.google.common.base.Suppliers;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.ImmutableMap;
-import com.mojang.datafixers.util.Pair;
 import com.ordana.verdant.blocks.LeafPileBlock;
 import com.ordana.verdant.configs.CommonConfigs;
 import com.ordana.verdant.reg.ModBlocks;
-import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesTypeRegistry;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -18,14 +15,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Optional;
@@ -79,6 +74,7 @@ public class WeatheringHelper {
         return Optional.ofNullable(LEAVES_TO_PILES.get().get(b));
     }
 
+    /*
     @Nullable
     public static Item getBarkToStrip(BlockState normalLog) {
         WoodType woodType = BlockSetAPI.getBlockTypeOf(normalLog.getBlock(), WoodType.class);
@@ -151,6 +147,8 @@ public class WeatheringHelper {
         }
         return Optional.empty();
     }
+
+     */
 
     public static final Supplier<BiMap<DyeColor, Block>> COLOR_TO_PRIMROSE = Suppliers.memoize(() -> {
         var builder = ImmutableBiMap.<DyeColor, Block>builder()

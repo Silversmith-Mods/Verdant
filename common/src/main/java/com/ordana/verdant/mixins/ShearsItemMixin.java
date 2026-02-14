@@ -10,8 +10,6 @@ import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import java.util.List;
-
 @Mixin(ShearsItem.class)
 public class ShearsItemMixin {
 

@@ -113,9 +113,9 @@ public class ModCreativeTab {
                 ModBlocks.LEAF_PILES.values().stream().map(s-> (Supplier<Object>) () -> s).toArray(Supplier[]::new)
         );
 
-        before(e, Items.INK_SAC, CreativeModeTabs.INGREDIENTS,
-                ModItems.BARK.values().stream().map(s-> (Supplier<Object>) () -> s).toArray(Supplier[]::new)
-        );
+        //before(e, Items.INK_SAC, CreativeModeTabs.INGREDIENTS,
+        //        ModItems.BARK.values().stream().map(s-> (Supplier<Object>) () -> s).toArray(Supplier[]::new)
+        //);
 
     }
 

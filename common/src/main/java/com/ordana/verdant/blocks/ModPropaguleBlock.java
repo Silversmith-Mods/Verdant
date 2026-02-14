@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Fluids;
 
 import javax.swing.text.html.BlockView;
-import java.util.Random;
 
 public class ModPropaguleBlock extends MangrovePropaguleBlock implements Fallable {
     private static final BooleanProperty WATERLOGGED;

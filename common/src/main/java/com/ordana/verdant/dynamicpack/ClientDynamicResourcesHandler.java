@@ -2,7 +2,6 @@ package com.ordana.verdant.dynamicpack;
 
 import com.ordana.verdant.Verdant;
 import com.ordana.verdant.reg.ModBlocks;
-import com.ordana.verdant.reg.ModItems;
 import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
@@ -12,12 +11,9 @@ import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesGenerator;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicTexturePack;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
-import net.mehvahdjukaar.moonlight.api.resources.textures.PaletteColor;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureImage;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.FastColor;
 import net.minecraft.world.level.block.Blocks;
 import org.apache.logging.log4j.Logger;
 
@@ -92,19 +88,19 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
                     ResType.ITEM_MODELS.getPath(Verdant.res("oak_leaf_pile")));
 
             ModBlocks.LEAF_PILES.forEach((leafType, pile) -> {
-                if (leafType.isVanilla()&&PlatHelper.isDev()) return;
+                if (leafType.isVanilla() && PlatHelper.isDev()) return;
 
                 String path = leafType.getNamespace() + "/" + leafType.getTypeName();
                 String id = path + "_leaf_pile";
 
                 try {
-                    addSimilarJsonResource(manager,lpBlockState, "oak_leaf_pile", id);
+                    addSimilarJsonResource(manager, lpBlockState, "oak_leaf_pile", id);
                 } catch (Exception ex) {
                     getLogger().error("Failed to generate Leaf Pile blockstate definition for {} : {}", pile, ex);
                 }
 
                 try {
-                    addSimilarJsonResource(manager,lpItemModel, "oak_leaf_pile", id);
+                    addSimilarJsonResource(manager, lpItemModel, "oak_leaf_pile", id);
                 } catch (Exception ex) {
                     getLogger().error("Failed to generate Leaf Pile item model for {} : {}", pile, ex);
                 }
@@ -134,6 +130,8 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
         }
 
         //bark
+
+        /*
         {
             StaticResource barkModel = StaticResource.getOrLog(manager,
                     ResType.ITEM_MODELS.getPath(Verdant.res("oak_bark")));
@@ -163,6 +161,8 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
             });
         }
 
+         */
+
         //heavy leaves textures
         ModBlocks.LEAF_PILES.forEach((type, pile) -> {
             if (type.isVanilla() && PlatHelper.isDev()) return;
@@ -190,6 +190,7 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
             }
         });
 
+        /*
         //bark textures
         try (TextureImage template = TextureImage.open(manager, Verdant.res("item/bark_template")); TextureImage scalesTemplate = TextureImage.open(manager, Verdant.res("item/scales_template"))) {
 
@@ -239,10 +240,14 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
         } catch (Exception e) {
             getLogger().error("Could not generate any Bark texture : ", e);
         }
+
+        */
     }
 
     @Override
-    public void addDynamicTranslations(AfterLanguageLoadEvent lang) {
+    public void addDynamicTranslations(AfterLanguageLoadEvent languageEvent) {
+
+        /*
         ModItems.BARK.forEach((type, bark) -> {
             String id = Utils.getID(bark).getPath();
             if(id.endsWith("scales"))
@@ -253,10 +258,14 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
                 LangBuilder.addDynamicEntry(lang, "item.verdant.bark", type, bark);
             }
         });
+
+         */
+
         ModBlocks.LEAF_PILES.forEach((type, leaf) -> {
-            LangBuilder.addDynamicEntry(lang, "block.verdant.leaf_pile", type, leaf);
+            LangBuilder.addDynamicEntry(languageEvent, "block.verdant.leaf_pile", type, leaf);
         });
     }
+
 
     public static final Predicate<String> LOOKS_LIKE_LEAF_TEXTURE = s -> {
         s = ResourceLocation.parse(s).getPath();

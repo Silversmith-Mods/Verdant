@@ -1,12 +1,10 @@
 package com.ordana.verdant.reg;
 
-import com.mojang.datafixers.util.Pair;
 import com.ordana.verdant.configs.CommonConfigs;
 import com.ordana.verdant.util.WeatheringHelper;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -17,11 +15,13 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 
@@ -47,8 +47,8 @@ public class ModEvents {
         EVENTS.add(ModEvents::azaleaShearing);
         EVENTS.add(ModEvents::pseudoBonemeal);
         EVENTS.add(ModEvents::mossShearing);
-        EVENTS.add(ModEvents::axeStripping);
-        EVENTS.add(ModEvents::barkRepairing);
+        //EVENTS.add(ModEvents::axeStripping);
+        //EVENTS.add(ModEvents::barkRepairing);
     }
 
     public static InteractionResult onBlockCLicked(ItemStack stack, Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
@@ -164,6 +164,7 @@ public class ModEvents {
         return InteractionResult.PASS;
     }
 
+    /*
     private static InteractionResult axeStripping(Item item, ItemStack stack, BlockPos pos, BlockState state,
                                                   Player player, Level level, InteractionHand hand, BlockHitResult hitResult) {
         if (item instanceof AxeItem) {
@@ -222,4 +223,6 @@ public class ModEvents {
         }
         return InteractionResult.PASS;
     }
+
+     */
 }

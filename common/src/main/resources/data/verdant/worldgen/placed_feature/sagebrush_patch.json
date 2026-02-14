@@ -2,8 +2,10 @@
   "feature": "verdant:sagebrush_patch",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 8
+      "type": "minecraft:noise_based_count",
+      "noise_to_count_ratio": 3,
+      "noise_factor": 100,
+      "noise_offset": 0
     },
     {
       "type": "minecraft:in_square"

@@ -16,7 +16,7 @@ public class CommonConfigs {
     public static final Supplier<Boolean> CREATIVE_TAB;
     public static final Supplier<Boolean> CREATIVE_DROP;
     public static final Supplier<Boolean> DEBUG_RESOURCES;
-    public static final Supplier<String> GENERIC_BARK;
+    //public static final Supplier<String> GENERIC_BARK;
     public static final Supplier<List<String>> LEAF_PILES_BLACKLIST;
 
 
@@ -31,7 +31,7 @@ public class CommonConfigs {
         CREATIVE_DROP = builder.comment("Drop stuff when in creative").define("drop_in_creative", false);
         DEBUG_RESOURCES = builder.comment("Save generated resources to disk in a 'debug' folder in your game directory. Mainly for debug purposes but can be used to generate assets in all wood types for your mods :0")
                 .define("debug_save_dynamic_pack", false);
-        GENERIC_BARK = builder.define("generic_bark", "");
+        //GENERIC_BARK = builder.define("generic_bark", "");
         LEAF_PILES_BLACKLIST = builder.comment("leaves that wont spawn leaf piles").define("leaf_piles_blacklist", List.of());
 
         builder.pop();

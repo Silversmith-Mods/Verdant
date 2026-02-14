@@ -2,7 +2,6 @@ package com.ordana.verdant.dynamicpack;
 
 import com.ordana.verdant.Verdant;
 import com.ordana.verdant.reg.ModBlocks;
-import com.ordana.verdant.reg.ModItems;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
@@ -10,7 +9,6 @@ import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynServerResourcesGenerator;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -48,17 +46,21 @@ public class ServerDynamicResourcesHandler extends DynServerResourcesGenerator {
         dynamicPack.addTag(tag, Registries.BLOCK);
         dynamicPack.addTag(tag, Registries.BLOCK);
 
+        /*
         dynamicPack.addTag(SimpleTagBuilder.of(Verdant.res("bark"))
                 .addEntries(ModItems.BARK.values()), Registries.ITEM);
+
+         */
 
 
         //data
         StaticResource lootTable = StaticResource.getOrLog(manager, ResType.BLOCK_LOOT_TABLES.getPath(Verdant.res("oak_leaf_pile")));
         StaticResource leafRecipe = StaticResource.getOrLog(manager, ResType.RECIPES.getPath(Verdant.res("oak_leaf_pile")));
-        StaticResource unstripLogRecipe = StaticResource.getOrLog(manager, ResType.RECIPES.getPath(Verdant.res("oak_log_unstrip")));
-        StaticResource unstripWoodRecipe = StaticResource.getOrLog(manager, ResType.RECIPES.getPath(Verdant.res("oak_wood_unstrip")));
-        StaticResource woodFromBarkRecipe = StaticResource.getOrLog(manager, ResType.RECIPES.getPath(Verdant.res("oak_wood_from_bark")));
+        //StaticResource unstripLogRecipe = StaticResource.getOrLog(manager, ResType.RECIPES.getPath(Verdant.res("oak_log_unstrip")));
+        //StaticResource unstripWoodRecipe = StaticResource.getOrLog(manager, ResType.RECIPES.getPath(Verdant.res("oak_wood_unstrip")));
+        //StaticResource woodFromBarkRecipe = StaticResource.getOrLog(manager, ResType.RECIPES.getPath(Verdant.res("oak_wood_from_bark")));
 
+        /*
         for (var e : ModItems.BARK.entrySet()) {
             WoodType woodType = e.getKey();
             if (!woodType.isVanilla()) {
@@ -98,6 +100,8 @@ public class ServerDynamicResourcesHandler extends DynServerResourcesGenerator {
 
             }
         }
+
+         */
 
         for (var e : ModBlocks.LEAF_PILES.entrySet()) {
             LeavesType leafType = e.getKey();

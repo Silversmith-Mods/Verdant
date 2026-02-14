@@ -1,12 +1,7 @@
 package com.ordana.verdant.blocks;
 
 import com.mojang.serialization.MapCodec;
-import com.ordana.verdant.Verdant;
-import com.ordana.verdant.reg.ModBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
@@ -17,7 +12,6 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 public class SandBushBlock extends BushBlock implements BonemealableBlock {
   public SandBushBlock(Properties properties) {
