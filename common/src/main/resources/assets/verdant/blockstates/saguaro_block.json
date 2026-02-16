@@ -5,24 +5,220 @@
       "x": 90,
       "y": 90
     },
-    "axis=y,attached=true": {
-      "model": "verdant:block/saguaro"
-    },
-    "axis=z,attached=true": {
-      "model": "verdant:block/saguaro_horizontal",
-      "x": 90
-    },
     "axis=x,attached=false": {
       "model": "verdant:block/saguaro_inside_horizontal",
       "x": 90,
       "y": 90
     },
-    "axis=y,attached=false": {
-      "model": "verdant:block/saguaro_inside"
+    "axis=z,attached=true": {
+      "model": "verdant:block/saguaro_horizontal",
+      "x": 90
     },
     "axis=z,attached=false": {
       "model": "verdant:block/saguaro_inside_horizontal",
       "x": 90
-    }
+    },
+    "axis=y,attached=false": [
+      {
+        "model": "verdant:block/saguaro_inside_0",
+        "weight": 120
+      },
+      {
+        "model": "verdant:block/saguaro_inside_1",
+        "weight": 3
+      },
+      {
+        "model": "verdant:block/saguaro_inside_2",
+        "weight": 3
+      },
+      {
+        "model": "verdant:block/saguaro_inside_3",
+        "weight": 2
+      },
+      {
+        "model": "verdant:block/saguaro_inside_4",
+        "weight": 2
+      },
+      {
+        "model": "verdant:block/saguaro_inside_5",
+        "weight": 1
+      },
+      {
+        "model": "verdant:block/saguaro_inside_1",
+        "weight": 3,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/saguaro_inside_2",
+        "weight": 3,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/saguaro_inside_3",
+        "weight": 2,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/saguaro_inside_4",
+        "weight": 2,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/saguaro_inside_5",
+        "weight": 1,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/saguaro_inside_1",
+        "weight": 3,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/saguaro_inside_2",
+        "weight": 3,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/saguaro_inside_3",
+        "weight": 2,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/saguaro_inside_4",
+        "weight": 2,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/saguaro_inside_5",
+        "weight": 1,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/saguaro_inside_1",
+        "weight": 3,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/saguaro_inside_2",
+        "weight": 3,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/saguaro_inside_3",
+        "weight": 2,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/saguaro_inside_4",
+        "weight": 2,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/saguaro_inside_5",
+        "weight": 1,
+        "y": 270
+      }
+    ],
+    "axis=y,attached=true": [
+      {
+        "model": "verdant:block/saguaro_0",
+        "weight": 120
+      },
+      {
+        "model": "verdant:block/saguaro_1",
+        "weight": 3
+      },
+      {
+        "model": "verdant:block/saguaro_2",
+        "weight": 3
+      },
+      {
+        "model": "verdant:block/saguaro_3",
+        "weight": 2
+      },
+      {
+        "model": "verdant:block/saguaro_4",
+        "weight": 2
+      },
+      {
+        "model": "verdant:block/saguaro_5",
+        "weight": 1
+      },
+      {
+        "model": "verdant:block/saguaro_1",
+        "weight": 3,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/saguaro_2",
+        "weight": 3,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/saguaro_3",
+        "weight": 2,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/saguaro_4",
+        "weight": 2,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/saguaro_5",
+        "weight": 1,
+        "y": 90
+      },
+      {
+        "model": "verdant:block/saguaro_1",
+        "weight": 3,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/saguaro_2",
+        "weight": 3,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/saguaro_3",
+        "weight": 2,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/saguaro_4",
+        "weight": 2,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/saguaro_5",
+        "weight": 1,
+        "y": 180
+      },
+      {
+        "model": "verdant:block/saguaro_1",
+        "weight": 3,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/saguaro_2",
+        "weight": 3,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/saguaro_3",
+        "weight": 2,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/saguaro_4",
+        "weight": 2,
+        "y": 270
+      },
+      {
+        "model": "verdant:block/saguaro_5",
+        "weight": 1,
+        "y": 270
+      }
+    ]
   }
 }

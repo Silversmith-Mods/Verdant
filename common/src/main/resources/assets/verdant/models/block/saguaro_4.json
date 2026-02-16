@@ -1,0 +1,11 @@
+{
+    "parent": "minecraft:block/crafter",
+    "textures": {
+        "top": "verdant:block/saguaro_top",
+        "bottom": "verdant:block/saguaro_inside",
+        "north": "verdant:block/saguaro_side_2",
+        "south": "verdant:block/saguaro_side_1",
+        "east": "verdant:block/saguaro_side_0",
+        "west": "verdant:block/saguaro_side_0"
+    }
+}

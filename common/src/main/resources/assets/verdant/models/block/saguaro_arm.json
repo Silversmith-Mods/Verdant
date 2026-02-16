@@ -3,7 +3,7 @@
     "1": "verdant:block/saguaro_arm_curve",
     "2": "verdant:block/saguaro_arm_inside",
     "3": "verdant:block/saguaro_arm_side",
-    "particle": "verdant:block/saguaro_side"
+    "particle": "verdant:block/saguaro_side_0"
   },
   "elements": [
     {

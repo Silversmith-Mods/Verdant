@@ -2,7 +2,7 @@
   "textures": {
     "3": "verdant:block/saguaro_arm_side",
     "4": "verdant:block/saguaro_arm_top",
-    "particle": "verdant:block/saguaro_side"
+    "particle": "verdant:block/saguaro_side_0"
   },
   "elements": [
     {

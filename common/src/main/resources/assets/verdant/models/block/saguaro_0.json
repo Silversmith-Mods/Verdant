@@ -3,6 +3,6 @@
     "textures": {
         "top": "verdant:block/saguaro_top",
         "bottom": "verdant:block/saguaro_inside",
-        "side": "verdant:block/saguaro_side"
+        "side": "verdant:block/saguaro_side_0"
     }
 }

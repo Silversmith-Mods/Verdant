@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "verdant:block/saguaro_side"
+    "all": "verdant:block/saguaro_side_0"
   }
 }
