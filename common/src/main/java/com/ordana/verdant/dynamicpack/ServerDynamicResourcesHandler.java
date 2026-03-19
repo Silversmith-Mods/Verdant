@@ -2,44 +2,33 @@ package com.ordana.verdant.dynamicpack;
 
 import com.ordana.verdant.Verdant;
 import com.ordana.verdant.reg.ModBlocks;
-import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynServerResourcesGenerator;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
+import net.mehvahdjukaar.moonlight.api.resources.pack.*;
 import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
-import org.apache.logging.log4j.Logger;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 
-public class ServerDynamicResourcesHandler extends DynServerResourcesGenerator {
+public class ServerDynamicResourcesHandler extends DynamicServerResourceProvider {
 
     public static final ServerDynamicResourcesHandler INSTANCE = new ServerDynamicResourcesHandler();
 
     public ServerDynamicResourcesHandler() {
-        super(new DynamicDataPack(Verdant.res("generated_pack")));
-        this.dynamicPack.setGenerateDebugResources(PlatHelper.isDev());
+        super(Verdant.res("generated_pack"), PackGenerationStrategy.CACHED);
     }
 
     @Override
-    public Logger getLogger() {
-        return Verdant.LOGGER;
-    }
+    protected void regenerateDynamicAssets(Consumer<ResourceGenTask> executor) {
 
-//    @Override
-//    public boolean dependsOnLoadedPacks() {
-//        return true;
-//    }
-
-    @Override
-    public void regenerateDynamicAssets(ResourceManager manager) {
-
+        executor.accept((manager, dynamicPack) ->  {
         //tag
         SimpleTagBuilder tag = SimpleTagBuilder.of(Verdant.res("leaf_piles"));
         tag.addEntries(ModBlocks.LEAF_PILES.values());
@@ -115,23 +104,25 @@ public class ServerDynamicResourcesHandler extends DynServerResourcesGenerator {
 
                 //TODO: use new system
                 try {
-                    addLeafPileJson(Objects.requireNonNull(lootTable), id, leavesId);
+                    addLeafPileJson(dynamicPack, Objects.requireNonNull(lootTable), id, leavesId);
                 } catch (Exception ex) {
-                    getLogger().error("Failed to generate Leaf Pile loot table for {} : {}", v, ex);
+                    Verdant.LOGGER.error("Failed to generate Leaf Pile loot table for {} : {}", v, ex);
                 }
 
                 try {
-                    addLeafPileJson(Objects.requireNonNull(leafRecipe), id, leavesId);
+                    addLeafPileJson(dynamicPack, Objects.requireNonNull(leafRecipe), id, leavesId);
                 } catch (Exception ex) {
-                    getLogger().error("Failed to generate Leaf Pile recipe for {} : {}", v, ex);
+                    Verdant.LOGGER.error("Failed to generate Leaf Pile recipe for {} : {}", v, ex);
                 }
 
             }
         }
 
+        });
+
     }
 
-    public void addLeafPileJson(StaticResource resource, String id, String leafBlockId) {
+    public void addLeafPileJson(ResourceSink dynamicPack, StaticResource resource, String id, String leafBlockId) {
         String string = new String(resource.data, StandardCharsets.UTF_8);
 
         String path = resource.location.getPath().replace("oak_leaf_pile", id);
@@ -144,17 +135,8 @@ public class ServerDynamicResourcesHandler extends DynServerResourcesGenerator {
         dynamicPack.addBytes(newRes, string.getBytes(), ResType.GENERIC);
     }
 
-    public void unstripLogBuilder(StaticResource resource, String target1, String target2, String target3, String id, String barkId, String slogId, String logId) {
-        String string = new String(resource.data, StandardCharsets.UTF_8);
-
-        String path = resource.location.getPath().replace(target1, id);
-
-        string = string.replace("oak_bark", barkId);
-        string = string.replace(target2, slogId);
-        string = string.replace(target3, logId);
-
-        //adds modified under my namespace
-        ResourceLocation newRes = Verdant.res(path);
-        dynamicPack.addBytes(newRes, string.getBytes(), ResType.GENERIC);
+    @Override
+    protected Collection<String> gatherSupportedNamespaces() {
+        return List.of("minecraft");
     }
 }

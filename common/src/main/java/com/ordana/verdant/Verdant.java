@@ -6,6 +6,7 @@ import com.ordana.verdant.dynamicpack.ServerDynamicResourcesHandler;
 import com.ordana.verdant.network.NetworkHandler;
 import com.ordana.verdant.reg.*;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,7 +31,7 @@ public class Verdant {
 
         PlatHelper.addCommonSetup(Verdant::setup);
 
-        ServerDynamicResourcesHandler.INSTANCE.register();
+        RegHelper.registerDynamicResourceProvider(ServerDynamicResourcesHandler.INSTANCE);
 
         ModCreativeTab.init();
 

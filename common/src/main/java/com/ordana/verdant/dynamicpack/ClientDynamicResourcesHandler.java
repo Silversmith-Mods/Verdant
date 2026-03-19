@@ -8,39 +8,29 @@ import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesGenerator;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicTexturePack;
+import net.mehvahdjukaar.moonlight.api.resources.pack.*;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureImage;
+import net.mehvahdjukaar.moonlight.api.resources.textures.TextureOps;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.block.Blocks;
-import org.apache.logging.log4j.Logger;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
+public class ClientDynamicResourcesHandler extends DynamicClientResourceProvider {
 
     public static final ClientDynamicResourcesHandler INSTANCE = new ClientDynamicResourcesHandler();
 
     public ClientDynamicResourcesHandler() {
-        super(new DynamicTexturePack(Verdant.res("generated_pack")));
-        this.dynamicPack.setGenerateDebugResources(PlatHelper.isDev());
+        super(Verdant.res("generated_pack"), PackGenerationStrategy.CACHED);
     }
 
-    @Override
-    public Logger getLogger() {
-        return Verdant.LOGGER;
-    }
-
-//    @Override
-//    public boolean dependsOnLoadedPacks() {
-//        return true;
-//    }
-
-    public void addLeafPilesModel(StaticResource resource, String id, ResourceLocation texturePath) {
+    public void addLeafPilesModel(StaticResource resource, String id, ResourceLocation texturePath, ResourceSink dynamicPack) {
         String string = new String(resource.data, StandardCharsets.UTF_8);
 
         String path = resource.location.getPath().replace("oak_leaf_pile", id);
@@ -58,7 +48,10 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
     //-------------resource pack dependant textures-------------
 
     @Override
-    public void regenerateDynamicAssets(ResourceManager manager) {
+    protected void regenerateDynamicAssets(Consumer<ResourceGenTask> consumer) {
+
+        consumer.accept((manager, dynamicPack) -> {
+
 
         //------leaf piles------
         {
@@ -94,15 +87,15 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
                 String id = path + "_leaf_pile";
 
                 try {
-                    addSimilarJsonResource(manager, lpBlockState, "oak_leaf_pile", id);
+                    dynamicPack.addSimilarJsonResource(manager, lpBlockState, "oak_leaf_pile", id);
                 } catch (Exception ex) {
-                    getLogger().error("Failed to generate Leaf Pile blockstate definition for {} : {}", pile, ex);
+                    Verdant.LOGGER.error("Failed to generate Leaf Pile blockstate definition for {} : {}", pile, ex);
                 }
 
                 try {
-                    addSimilarJsonResource(manager, lpItemModel, "oak_leaf_pile", id);
+                    dynamicPack.addSimilarJsonResource(manager, lpItemModel, "oak_leaf_pile", id);
                 } catch (Exception ex) {
-                    getLogger().error("Failed to generate Leaf Pile item model for {} : {}", pile, ex);
+                    Verdant.LOGGER.error("Failed to generate Leaf Pile item model for {} : {}", pile, ex);
                 }
 
                 //models
@@ -111,20 +104,20 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
                     try {
                         leavesTexture = RPUtils.findFirstBlockTextureLocation(manager, leafType.leaves, LOOKS_LIKE_LEAF_TEXTURE);
                     } catch (Exception exception) {
-                        getLogger().warn("Failed to find texture for Leaf Pile {}, using oak one instead", pile);
+                        Verdant.LOGGER.warn("Failed to find texture for Leaf Pile {}, using oak one instead", pile);
                         leavesTexture = RPUtils.findFirstBlockTextureLocation(manager, Blocks.OAK_LEAVES, (s) -> true);
                     }
-                    addLeafPilesModel(Objects.requireNonNull(lpModel1), id, leavesTexture);
-                    addLeafPilesModel(Objects.requireNonNull(lpModel2), id, leavesTexture);
-                    addLeafPilesModel(Objects.requireNonNull(lpModel4), id, leavesTexture);
-                    addLeafPilesModel(Objects.requireNonNull(lpModel6), id, leavesTexture);
-                    addLeafPilesModel(Objects.requireNonNull(lpModel8), id, leavesTexture);
-                    addLeafPilesModel(Objects.requireNonNull(lpModel10), id, leavesTexture);
-                    addLeafPilesModel(Objects.requireNonNull(lpModel12), id, leavesTexture);
-                    addLeafPilesModel(Objects.requireNonNull(lpModel14), id, leavesTexture);
-                    addLeafPilesModel(Objects.requireNonNull(lpModel16), id, leavesTexture);
+                    addLeafPilesModel(Objects.requireNonNull(lpModel1), id, leavesTexture, dynamicPack);
+                    addLeafPilesModel(Objects.requireNonNull(lpModel2), id, leavesTexture, dynamicPack);
+                    addLeafPilesModel(Objects.requireNonNull(lpModel4), id, leavesTexture, dynamicPack);
+                    addLeafPilesModel(Objects.requireNonNull(lpModel6), id, leavesTexture, dynamicPack);
+                    addLeafPilesModel(Objects.requireNonNull(lpModel8), id, leavesTexture, dynamicPack);
+                    addLeafPilesModel(Objects.requireNonNull(lpModel10), id, leavesTexture, dynamicPack);
+                    addLeafPilesModel(Objects.requireNonNull(lpModel12), id, leavesTexture, dynamicPack);
+                    addLeafPilesModel(Objects.requireNonNull(lpModel14), id, leavesTexture, dynamicPack);
+                    addLeafPilesModel(Objects.requireNonNull(lpModel16), id, leavesTexture, dynamicPack);
                 } catch (Exception ex) {
-                    getLogger().error("Failed to generate Leaf Pile model for {} : {}", pile, ex);
+                    Verdant.LOGGER.error("Failed to generate Leaf Pile model for {} : {}", pile, ex);
                 }
             });
         }
@@ -173,7 +166,7 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
 
                 ResourceLocation textureRes = Verdant.res(
                         String.format("block/%s", path));
-                if (!alreadyHasTextureAtLocation(manager, textureRes)) {
+                if (!dynamicPack.alreadyHasAssetAtLocation(manager, textureRes)) {
 
                     Palette targetPalette = Palette.fromImage(baseTexture);
                     if (targetPalette.getDarkest().getOccurrence() > 5) {
@@ -181,12 +174,12 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
                     }
                     var dark = targetPalette.getDarkest();
 
-                    baseTexture.removeAlpha(dark.value());
+                    TextureOps.makeOpaque(baseTexture, dark.value());
 
                     dynamicPack.addAndCloseTexture(textureRes, baseTexture);
                 }
             } catch (Exception ex) {
-                getLogger().error("Could not generate heavy leaf pile texture for type {}", type, ex);
+                Verdant.LOGGER.error("Could not generate heavy leaf pile texture for type {}", type, ex);
             }
         });
 
@@ -242,6 +235,7 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
         }
 
         */
+        });
     }
 
     @Override
@@ -271,4 +265,9 @@ public class ClientDynamicResourcesHandler extends DynClientResourcesGenerator {
         s = ResourceLocation.parse(s).getPath();
         return !s.contains("_bushy") && !s.contains("_snow") && !s.contains("_overlay");
     };
+
+    @Override
+    protected Collection<String> gatherSupportedNamespaces() {
+        return List.of("minecraft");
+    }
 }

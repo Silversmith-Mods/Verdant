@@ -12,6 +12,7 @@ import com.ordana.verdant.reg.ModParticles;
 import net.mehvahdjukaar.moonlight.api.client.renderer.FallingBlockRendererGeneric;
 import net.mehvahdjukaar.moonlight.api.misc.EventCalled;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
+import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.set.leaves.LeavesType;
 import net.mehvahdjukaar.moonlight.api.util.math.colors.RGBColor;
 import net.minecraft.client.renderer.RenderType;
@@ -26,7 +27,7 @@ public class VerdantClient {
 
     public static void init() {
         ClientHelper.addClientSetup(VerdantClient::setup);
-        ClientDynamicResourcesHandler.INSTANCE.register();
+        RegHelper.registerDynamicResourceProvider(ClientDynamicResourcesHandler.INSTANCE);
 
         ClientHelper.registerOptionalTexturePack(Verdant.res("visual_waxed_iron_items"), false);
 
