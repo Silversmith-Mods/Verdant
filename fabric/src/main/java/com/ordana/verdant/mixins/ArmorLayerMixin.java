@@ -2,6 +2,7 @@ package com.ordana.verdant.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.ordana.verdant.Verdant;
 import com.ordana.verdant.items.FlowerCrownItem;
 import com.ordana.verdant.reg.ModItems;
 import net.minecraft.client.model.HumanoidModel;
@@ -48,7 +49,7 @@ public abstract class ArmorLayerMixin <T extends LivingEntity, M extends Humanoi
                 ResourceLocation resourcelocation = ARMOR_LOCATION_CACHE.get(texture);
 
                 if (resourcelocation == null) {
-                    resourcelocation = ResourceLocation.parse(texture);
+                    resourcelocation = Verdant.res(texture);
                     ARMOR_LOCATION_CACHE.put(texture, resourcelocation);
                 }
 
