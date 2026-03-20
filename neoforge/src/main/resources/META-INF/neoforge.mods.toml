@@ -48,3 +48,6 @@ Abundant foliage and greenery bring your world to life.
 
 [[mixins]]
 config = "verdant-common.mixins.json"
+
+[[mixins]]
+config = "verdant.mixins.json"

@@ -1,21 +1,31 @@
 package com.ordana.verdant.items;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.ordana.verdant.Verdant;
+import com.ordana.verdant.reg.ModItems;
 import com.ordana.verdant.reg.ModParticles;
 import dev.architectury.injectables.annotations.PlatformOnly;
 import net.minecraft.Util;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -28,18 +38,9 @@ public class FlowerCrownItem extends ArmorItem {
         super(material, type, properties);
     }
 
-    @PlatformOnly(PlatformOnly.FORGE)
-    //@Override
-    public void onArmorTick(ItemStack stack, Level level, Player player) {
-        if (level.isClientSide) {
-            spawnParticles(stack, level, player, level);
-        }
-    }
-
-    @PlatformOnly(PlatformOnly.FABRIC)
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
-        if (level.isClientSide && entity instanceof LivingEntity livingEntity) {
+        if (level.isClientSide() && entity instanceof LivingEntity livingEntity) {
             if (livingEntity.getItemBySlot(EquipmentSlot.HEAD) == stack) {
                 spawnParticles(stack, level, entity, level);
             }
@@ -58,12 +59,13 @@ public class FlowerCrownItem extends ArmorItem {
         }
     }
 
-
-    @Nullable
     @PlatformOnly(PlatformOnly.FORGE)
-    //@Override
-    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return getModelTexture(stack);
+//    @Override
+    public @Nullable ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
+        String res = getModelTexture(stack);
+        System.out.println(res);
+        if (res != null) return Verdant.res(res);
+        return null;
     }
 
     @Nullable
